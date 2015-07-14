@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <h1>this is a view</h1>
+    <div>Products: @Html.DropDownList("products", (SelectList)ViewBag.Products)</div>
+    <hr>
+    <div id="message"></div>
+    <div id="result">
+        <div>Name: <input id="name" /></div>
+        <div>Price: <input id="price" /></div>
+        <div><button>Update</button></div>
+    </div>
+</div>
