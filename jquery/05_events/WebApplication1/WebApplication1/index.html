@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        body{
+            font-family:Arial, sans-serif;
+        }
+
+        li {
+            cursor:pointer;
+        }
+
+        .hover{
+            background-color:lime;
+        }
+        .selected{
+            background-color:orange;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Events</h1>
+    <div>
+        <a href="http://google.com">Google</a>
+    </div>
+
+    <!--<form method="post" action="http://foo.com/submit">
+        Name: <input id="name">
+        <button>Submit</button>
+    </form>-->
+
+    <div>
+        Name: <input id="name">
+        <button id="addPerson">Add Person</button>
+        <button id="removePeople">Remove Selected People</button>
+    </div>
+
+    <h2>Customer Count: <span id="count"></span></h2>
+
+    <ul id="people">
+        <li id="brock">
+            Brock
+            <span>Allen</span>
+        </li>
+        <li class="female mean" title="is not nice">Alice</li>
+        <li>Bob</li>
+        <li class="female" title="Nice gal">Sue</li>
+        <li>Fred</li>
+    </ul>
+
+    <script src="jquery.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
