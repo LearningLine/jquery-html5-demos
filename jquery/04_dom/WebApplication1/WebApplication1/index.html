@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        body{
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        li {
+            cursor:pointer;
+        }
+
+        .female{
+            font-style:italic;
+        }
+
+        .colorful {
+            color:red;
+            background-color:lime;
+            border:2px dotted orange;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>DOM</h1>
+
+    <div>
+        <label for="cb">Is Mean:</label>
+        <input type="checkbox" id="cb" checked disabled>
+        <select>
+            <option>Green</option>
+            <option selected>Blue</option>
+            <option>Orange</option>
+        </select>
+    </div>
+
+    <div>
+        Name: <input id="name" value="Hello!">
+        <button id="addPerson">Add Person</button>
+        <button id="removePeople">Remove Selected People</button>
+    </div>
+
+    <ul id="people">
+        <li id="brock" title="Nice guy" data-pk="{'pk':5, 'manager_pk':10}">
+            Brock
+        </li>
+        <li class="female mean" title="is not nice">
+            <!--&lt;span&gt;-->
+            Alice
+        </li>
+        <li>Bob</li>
+        <li class="female" title="Nice gal">Sue</li>
+        <li>Fred</li>
+    </ul>
+
+    <script src="jquery.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
