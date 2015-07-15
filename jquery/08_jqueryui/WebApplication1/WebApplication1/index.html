@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="jquery-ui.css" rel="stylesheet" />
+    <style>
+        #foo{
+            width:200px;
+            height:200px;
+        }
+
+        .foo{
+            background-color:red;
+        }
+
+        .bar{
+            background-color:blue;
+        }
+        #d{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="d" class="">
+        <p>Do you want to continue?</p>
+    </div>
+
+    <p>
+        Birthday: <input id="bday" title="Enter your bday~!">
+        <!--@Html.TextBoxFor(x=>model.BDay)-->
+    </p>
+    <p>
+        <button id="m">toggle</button>
+
+        <div id="foo" class="foo">
+            dfjkljhdfkjhdfjdfkl
+        </div>
+    </p>
+
+    <script src="jquery.js"></script>
+    <script src="jquery-ui.js"></script>
+    <script>
+        $(function () {
+
+            //if (window.confirm("do you want to continue?")) {
+
+            //}
+
+            $("#bday")
+                .tooltip()
+                .datepicker({
+                    showAnim:"slideDown"
+                });
+
+            $("button").button();
+
+            //$("#foo").draggable({
+            //    grid: [100, 100],
+            //    drag: function (e, ui) {
+            //        console.log(ui);
+            //    }
+            //});
+
+            //$("button").click(function () {
+            //    if ($("#foo").draggable("option", "disabled")) {
+            //        $("#foo").draggable("enable");
+            //    }
+            //    else {
+            //        $("#foo").draggable("disable");
+            //    }
+            //});
+
+            $("#m").click(function () {
+                //$(this).switchClass("foo", "bar", 3000, "easeInBounce");
+                //$(this).effect("explode");
+
+                $("#d").dialog({
+                    modal: true,
+                    width: 400,
+                    title: "This is the title",
+                    buttons: {
+                        "OK": function () {
+
+                            $("#d").dialog("close");
+                        },
+                        "Cancel": function () {
+                            $("#d").dialog("close");
+                        }
+                    }
+                });
+
+            });
+
+        });
+    </script>
+</body>
+</html>
