@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <button>Click me</button>
+    <div id="current"></div>
+    <script src="jquery.js"></script>
+    <script>
+        $(function () {
+
+            var state = 0;
+            $("button").click(function () {
+                state++;
+                window.location.hash = state;
+            });
+
+            $(window).on("hashchange", function () {
+                var val = window.location.hash;
+                if (val) {
+                    // #5
+                    val = val.substr(1);
+                }
+                else {
+                    val = 0;
+                }
+
+                $("#current").text(val);
+            }).trigger("hashchange");
+
+
+
+        });
+    </script>
+</body>
+</html>

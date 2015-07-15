@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <p>Hello</p>
+    <p>Goodbye</p>
+    <script src="jquery.js"></script>
+    <script>
+        $.fn.red = function (options) {
+            this.css("color", "red");
+            this.each(function () {
+                var tmp = $(this).text() + options.text;
+                $(this).text(tmp);
+            });
+
+            return this;
+        };
+
+        $(function () {
+            $("p:last")
+                .red({text:"!!!"})
+                .css("font-style", "italic")
+                //.red();
+        });
+    </script>
+</body>
+</html>

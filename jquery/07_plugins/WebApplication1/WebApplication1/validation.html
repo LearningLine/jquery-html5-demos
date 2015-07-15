@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <form method="post" action="foo" id="f">
+        <div>
+            <label>Name</label>
+            <input id="name" name="name">
+        </div>
+        <div>
+            <button>Submit</button>
+        </div>
+    </form>
+
+    <script src="jquery.js"></script>
+    <script src="jquery.validate.js"></script>
+    <script>
+        $.validator.addMethod("not", function (val, elem, settings) {
+            return val !== settings;
+        }, "You can't use the value {0}");
+
+        $(function () {
+            $("#f").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 5,
+                        not: "Joe"
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Name is required!"
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
