@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using WebApplication1.Models;
@@ -18,8 +20,10 @@ namespace WebApplication1.Api
     {
         [Route("api/product/{id}")]
         [HttpGet]
-        public IHttpActionResult Get(int id)
+        public async Task<IHttpActionResult> Get(int id)
         {
+            await Task.Delay(2000);
+
             var db = new NorthwindDb();
             var p = db.Products.SingleOrDefault(x => x.ProductID == id);
 

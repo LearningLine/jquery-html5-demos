@@ -165,6 +165,7 @@
     <Content Include="MyBundle.min.js">
       <DependentUpon>MyBundle.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\App - Copy.js" />
     <Content Include="Scripts\App.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

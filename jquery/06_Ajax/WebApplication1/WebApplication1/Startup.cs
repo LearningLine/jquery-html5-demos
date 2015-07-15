@@ -10,6 +10,7 @@ namespace WebApplication1
 {
     public class Startup
     {
+        // OWIN/Katana
         public void Configuration(IAppBuilder app)
         {
             var config = new HttpConfiguration();

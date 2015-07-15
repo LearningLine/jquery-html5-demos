@@ -3,38 +3,6 @@
 
 $(function () {
 
-    // Task
-    // C# 5: async/await
-    /*
-        void DoAsyncWork(Action callback)
-        {
-             StartNew(()=>{
-               // do async stuff
-               // ...
-               callback();
-            });
-
-        
-        // .NET 4/4.5
-        var task = Task.Factory.StartNew(()=>{
-            // do async stuff
-        });
-        task.ContinueWith(()=>{
-
-        });
-
-        // C# 5
-        async void DoWork()
-        {
-            // pre
-
-            await DoAsync();
-
-            // this code here is in the implicit callback/ContinueWith
-        }
-    */
-
-
     $("#result button").click(function () {
         $("#message").slideUp(function () {
             $.ajax({
@@ -57,18 +25,6 @@ $(function () {
         });
     });
 
-    function getProduct(id) {
-        return $.ajax({
-            url: '/api/product/' + id,
-            type: 'GET'
-        });
-    }
-
-    function updateDetails(prod) {
-        $("#name").val(prod.ProductName);
-        $("#price").val(prod.UnitPrice);
-    }
-
     $("#products").change(function () {
         console.log(this.value);
 
@@ -77,19 +33,26 @@ $(function () {
 
         $("#result").fadeOut(function () {
 
-            var promise = getProduct(id);
-            //promise.then(function () { }, function () { });
-            promise
-                .done(updateDetails)
-                .done(function () {
+            $.ajax({
+                url: '/api/product/' + id,
+                type: 'GET',
+                success: function (data, status, xhr) {
+                    console.log("success", data);
+
+                    $("#name").val(data.ProductName);
+                    $("#price").val(data.UnitPrice);
+
                     $("#result").fadeIn();
-                });
 
-            //var product = await getProduct(id);
-            //updateDetails(product);
+                    //$("<div>").text("Name: " + data.ProductName).appendTo("#result");
+                    //$("<div>").text("Price: " + data.UnitPrice).appendTo("#result");
+                },
+                error: function () {
+                    $("#result").text("Error loading product details");
+                }
+            });
+
         });
-
-
 
     //$("#result button").click(function () {
     //    $("#message").slideUp(function () {
