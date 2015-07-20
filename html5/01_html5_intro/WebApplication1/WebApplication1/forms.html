@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        xinput:invalid{
+            border:1px solid red;
+        }
+        input:required{
+            content:'*';
+            color:red;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    <form action="foo" method="post" id="f">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" name="name" autocomplete="off" id="name" autofocus placeholder="enter your name">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <script>
+            document.getElementById("email").addEventListener("invalid", function (e) {
+                e.preventDefault();
+                console.log(e.target.validationMessage);
+                console.log(e.target.validity.valueMissing);
+                console.log(e.target.validity.typeMismatch);
+                console.log(e.target.validity.customError);
+            });
+
+            document.getElementById("email").addEventListener("input", function (e) {
+                console.log(e.target.value);
+
+                if (e.target.value === "brock@gmail.com") {
+                    e.target.setCustomValidity("you can't use that email address");
+                }
+                else {
+                    e.target.setCustomValidity("");
+                }
+            });
+        </script>
+        <div>
+            <label for="name">Age</label>
+            <input type="datetime-local" id="age" >
+            <script>
+                //if (document.getElementById("age").valueAsNumber === 1) {
+                //}
+            </script>
+        </div>
+        <div>
+            <label for="color">Color</label>
+            <input type="text" name="color" id="color"  list="color_list">
+            <datalist id="color_list">
+                <option value="0">Red (0)</option>
+                <option value="1">Green</option>
+            </datalist>
+        </div>
+        <div>
+            <button>Submit</button>
+            <button formtarget="f" formaction="home" formmethod="get">Cancel</button>
+        </div>
+    </form>
+
+</body>
+</html>
