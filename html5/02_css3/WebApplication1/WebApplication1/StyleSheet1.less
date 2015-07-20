@@ -1,0 +1,25 @@
+﻿@corp_color: green;
+
+.apply_corp_colors(@border-size){
+    color:@corp_color;
+    border:@border-size solid lighten(@corp_color, 10%);
+    // comments are supported!
+}
+
+header h1{
+    .apply_corp_colors(2px);
+}
+
+nav a {
+    .apply_corp_colors(1px);
+}
+
+header {
+    background-color:gray;
+
+    h1 {
+        .apply_corp_colors(1px);
+    }
+}
+
+
