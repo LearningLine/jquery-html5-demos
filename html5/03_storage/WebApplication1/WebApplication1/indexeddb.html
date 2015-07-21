@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <script>
+        var openRequest = window.indexedDB.open("MyDB", 1);
+        openRequest.onupgradeneeded = function () {
+            console.log("onupgradeneeded");
+
+            var db = openRequest.result;
+            var store = db.createObjectStore("PeopleStore", { keyPath: "name" });
+            store.createIndex("AgeIndex", "age", { unique: false });
+
+            store.add({ name: "Brock", age: 23 });
+            store.add({ name: "Alice", age: 53 });
+            store.add({ name: "Bob", age: 33 });
+        }
+
+        openRequest.onsuccess = function () {
+            console.log("onsuccess");
+
+            var db = openRequest.result;
+            var tx = db.transaction(["PeopleStore"], "readonly");
+            var store = tx.objectStore("PeopleStore");
+
+            //var getRequest = store.get("Brock");
+            //getRequest.onsuccess = function () {
+            //    var person = getRequest.result;
+            //    console.log(person);
+            //};
+            
+            //var cursorRequest = store.openCursor(IDBKeyRange.bound('Al', 'Bp'));
+            //var cursorRequest = store.openCursor(null, "next");
+
+            var index = store.index("AgeIndex");
+            var cursorRequest = index.openCursor(null, "next");
+            cursorRequest.onsuccess = function () {
+                var cursor = cursorRequest.result;
+                if (cursor) {
+                    var person = cursor.value;
+                    console.log(person);
+
+                    cursor.continue();
+                }
+                else {
+                    // no more records....
+                }
+            }
+        }
+
+        openRequest.onerror = function () {
+            console.log("error opening MyDB");
+        }
+
+    </script>
+</body>
+</html>

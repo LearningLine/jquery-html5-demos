@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Web Storage</h1>
+    <div>
+        Data: <input id="data_to_add">
+    </div>
+    <div id="data"></div>
+    <script>
+        //var storage = window.localStorage;
+        var storage = window.sessionStorage;
+
+        window.addEventListener("storage", function (e) {
+            console.log(e.key, e.oldValue, e.newValue);
+            showData();
+        });
+
+        function showData() {
+            var val = storage.getItem("theData");
+            //val = storage["theData"];
+            //val = storage.theData;
+            if (val) {
+                var person = JSON.parse(val);
+                // || in JavaScript
+                // ?? in C#
+                //document.getElementById("data").innerHTML = val || "No Data";
+                document.getElementById("data").innerHTML = person.name + ", " + person.age;
+            }
+            else {
+                document.getElementById("data").innerHTML = "No Data";
+            }
+        }
+
+        showData();
+
+        document.getElementById("data_to_add").addEventListener("input", function (e) {
+            storage.setItem("theData", JSON.stringify({ name: e.target.value, age: 5 }));
+            showData();
+        });
+    </script>
+</body>
+</html>
