@@ -1,0 +1,11 @@
+﻿CACHE MANIFEST
+# v6
+CACHE:
+/style.css
+/code.js
+
+NETWORK:
+*
+
+FALLBACK:
+/index2.aspx /offline.aspx
