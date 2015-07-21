@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <h1>Chat App</h1>
+    <div>
+        Message: <input /><button disabled>Send</button>
+    </div>
+    <ul></ul>
+
+    <script src="Scripts/jquery-1.6.4.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.0.js"></script>
+    <script src="signalr/hubs"></script>
+    <script>
+        $(function () {
+            var proxy = $.signalR.chat;
+
+            proxy.client.gotMessage = function (msg) {
+                $("<li>").text(msg).prependTo('ul');
+            };
+
+            $.signalR.hub.start().then(function () {
+                $("button").prop("disabled", false).click(function () {
+                    proxy.server.sendMessage($("input").val());
+                    //proxy.server.sendMessage(5);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

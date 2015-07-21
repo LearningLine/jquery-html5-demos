@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <button id="b">Do Ajax</button>
+    <script>
+        var token = "jhjhgdjk";
+
+        document.getElementById('b').addEventListener("click", function () {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                console.log(xhr.responseText);
+            };
+            xhr.onerror = function (e) {
+                console.log('error', e, xhr.status);
+            }
+            xhr.onprogress = function (e) {
+                if (e.lengthComputable) {
+                    var percent = (e.loaded / e.total) * 100;
+                }
+            }
+            xhr.upload.onload = function () {
+            }
+            xhr.upload.onprogress = function (e) {
+                if (e.lengthComputable) {
+                    var percent = (e.loaded / e.total) * 100;
+                }
+            }
+            xhr.open("GET", "http://localhost:58913/api/product/2");
+            //xhr.setRequestHeader("Authorization", "Bearer " + token);
+            xhr.send();
+        });
+    </script>
+</body>
+</html>
