@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebApplication1.Models;
 
 namespace WebApplication1.Api
@@ -16,10 +17,12 @@ namespace WebApplication1.Api
         public decimal Price { get; set; }
     }
 
+    //[EnableCors("http://localhost:7989", "Accept, Content-Type, Authorization", "GET")]
     public class ProductController : ApiController
     {
         [Route("api/product/{id}")]
         [HttpGet]
+        //[EnableCors("http://localhost:7989", "Accept, Content-Type, Authorization", "GET")]
         public async Task<IHttpActionResult> Get(int id)
         {
             await Task.Delay(2000);
