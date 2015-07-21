@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <!--<img src="book.jpg" id="i" style="display:none" />-->
+    <button id="b">Click me</button>
+    <canvas id="c" width="500" height="500"></canvas>
+    <script>
+
+        document.getElementById('b').addEventListener('click', function () {
+
+            var imgData = ctx.getImageData(0, 0, 500, 500);
+            for (var i = 0; i < imgData.data.length; i += 4) {
+                if (imgData.data[i + 1]) {
+                    //console.log(imgData.data[i], imgData.data[i + 1], imgData.data[i + 2], imgData.data[i + 3]);
+                }
+
+                //imgData.data[i + 0] = 0; // R
+                //imgData.data[i + 1] = 0; // G
+                imgData.data[i + 2] = 255; // B
+                //imgData.data[i + 3] = 100; // A
+            }
+
+            ctx.putImageData(imgData, 0, 0);
+        });
+
+        var i = new Image();
+        i.onload = function () {
+            ctx.drawImage(i, 50, 50);
+
+            ctx.fillText("hello!", 100, 100);
+            ctx.strokeText("hello!", 100, 200);
+        };
+        i.src = "book.jpg";
+
+        var c = document.getElementById('c');
+        var ctx = c.getContext('2d');
+
+        ctx.fillStyle = 'rgb(23, 34, 123)';
+        ctx.strokeStyle = "green";
+        ctx.lineWidth = 3;
+        ctx.lineJoin = "round";
+
+        ctx.font = "32pt sans-serif";
+       
+        
+
+        //ctx.translate(-150, -200);
+        //ctx.rotate(Math.PI * .2)
+        //ctx.fillRect(100, 100, 300, 400);
+        //ctx.strokeRect(100, 100, 200, 300);
+
+        //ctx.beginPath();
+        //ctx.moveTo(100, 100);
+        //ctx.lineTo(200, 100);
+        //ctx.lineTo(175, 150);
+        //ctx.lineTo(150, 50);
+
+        ////ctx.translate(100, 100);
+        //ctx.moveTo(240, 200);
+        ////ctx.scale(1.5, 1);
+        //ctx.arc(200, 200, 40, 0, Math.PI * 2, false);
+        ////ctx.closePath();
+        //ctx.stroke();
+        ////ctx.fill();
+
+        //ctx.arc(100, 100, 30, 0, 2 * Math.PI);
+
+        //ctx.rect(100, 100, 300, 400);
+
+    </script>
+
+</body>
+</html>
