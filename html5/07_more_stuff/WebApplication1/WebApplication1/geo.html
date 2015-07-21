@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <div id="map" style="width: 640px; height: 480px;"></div>
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false">
+    </script>
+
+    <script>
+        var handle = navigator.geolocation.watchPosition(function (pos) {
+            console.log(pos);
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 16,
+                center: new google.maps.LatLng(pos.coords.latitude,
+                                               pos.coords.longitude),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+        }, function (e) {
+            console.log('error', e);
+        },
+        { maximumAge: 5000, timeout: 1000, enableHighAccuracy: true });
+
+        navigator.geolocation.clearWatch(handle);
+    </script>
+
+</body>
+</html>

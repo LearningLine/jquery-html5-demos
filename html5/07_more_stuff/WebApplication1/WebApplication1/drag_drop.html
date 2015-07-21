@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        #a{
+            display:block;
+            width:200px;
+            height:200px;
+            background-color:green;
+        }
+        #b{
+            display:block;
+            width:200px;
+            height:200px;
+            background-color:orange;
+        }
+    </style>
+</head>
+<body>
+    <!--<img draggable="true" />
+    <a></a>-->
+    <div draggable="true" id="a"></div>
+    <div id="b"></div>
+
+    <script>
+        //document.getElementById("a").addEventListener("dragstart", function (e) {
+        //    e.dataTransfer.setData('text', "some data");
+        //});
+
+        document.getElementById("b").addEventListener("dragover", function (e) {
+            //if (e.dataTransfer.files.length) {
+                e.preventDefault();
+            //}
+        });
+
+        document.getElementById("b").addEventListener("drop", function (e) {
+            //console.log("a was dropped and the data was: " + e.dataTransfer.getData("text"));
+            //e.dataTransfer.files
+            e.preventDefault();
+
+            //console.log(e.dataTransfer.files.length);
+            console.log(e.dataTransfer.files[0]);
+            if (e.dataTransfer.files.length) {
+                var fr = new FileReader();
+                fr.onload = function (e) {
+                    console.log(e, fr.result);
+                    var i = new Image();
+                    i.src = fr.result;
+                    document.body.appendChild(i);
+                }
+                //fr.readAsText(e.dataTransfer.files[0]);
+                fr.readAsDataURL(e.dataTransfer.files[0]);
+            }
+        });
+
+
+    </script>
+</body>
+</html>
