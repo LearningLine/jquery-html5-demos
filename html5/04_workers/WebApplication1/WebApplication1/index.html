@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <button id="b">Calc PI</button>
+    <script>
+        var w = new Worker("/work.js");
+
+        w.onmessage = function (e) {
+            if (e.data.status === "done") {
+                alert("PI is " + e.data.result);
+            }
+        }
+
+        document.getElementById('b').addEventListener("click", function () {
+            w.postMessage({ command: "start" });
+        });
+    </script>
+</body>
+</html>
